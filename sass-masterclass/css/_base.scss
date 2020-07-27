@@ -1,0 +1,48 @@
+$text-color: orange;
+$colors: lightgray, purple, salmon, lightgreen, lightblue;
+@mixin box-shadow() {
+  box-shadow: 3px 3px 4px 1px rgba($text-color, 0.6);
+}
+
+@mixin make-bold($bool) {
+  @if $bool == true {
+    font-weight: bold;
+  }
+}
+
+body {
+  background-color: #7159c1;
+  color: $text-color;
+
+  .container {
+    @include box-shadow();
+    color: lavender;
+    width: 300px;
+    height: 200px;
+    background-color: plum;
+
+    p {
+      @include box-shadow();
+      width: 100px;
+      height: 100px;
+      background-color: royalblue;
+      color: lightblue;
+    }
+
+    span {
+      @include make-bold(true);
+    }
+  }
+}
+
+@for $i from 1 through 5 {
+  .text-#{$i} {
+    font-size: 14px * $i;
+  }
+}
+
+@each $color in $colors {
+  .#{$color}-text {
+    color: darken($color, 50);
+  }
+}
